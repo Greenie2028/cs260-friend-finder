@@ -60,7 +60,7 @@ I am going to use the required technologies in the following ways.
 - **React** - Implement user interactivity with the website.
 - **Service** - Pull from database to match users that share similar interests.
 - **DB/Login** - Login using email and password, store authentication credentials and user data.
-- **WebSocket** - Update matched friends and ratings.
+- **WebSocket** - Update matched friends and ratings, chat feature.
 
 ## 🚀 AWS deliverable
 
