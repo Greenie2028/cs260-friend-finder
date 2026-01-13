@@ -2,7 +2,10 @@
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+ - Users sign in with email and password, optionally providing a phone number.
+ - The app is designed around college-aged young adults.
+ - Upon sign up users select a number of hobbies or interests that can be edited latter.
+ - Users can then find friends that share a number of hobbies with them and decide whether or not they would like to reach out to them.
 
 > [!NOTE]
 > This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
@@ -18,14 +21,14 @@ A brief description of the application here. Lorem ipsum dolor sit amet, consect
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] Proper use of Markdownk
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
+- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-To combat the rising epidemic of loneliness among the younger generation, Friend Finder acts as a dating app, except for friends! A user inputs hobbies they have and activities they enjoy, and Friend Finder will match them with people with similar interests. If the users decide they would like to meet, they can provide contact information into the app to reach out to each other.
+To combat the rising epidemic of loneliness among the younger generation, Friend Finder acts as a dating app, except for friends! A user inputs hobbies they have and activities they enjoy, and Friend Finder will match them with people with similar interests. If the users decide they would like to meet, they can provide contact information into the app to reach out to each other. With this app, those that may have trouble finding friends will have a much easier time.
 
 ### Design
 
@@ -42,20 +45,22 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Hobby/Interest Match Making
+- Reach Out Button/Functionality
+- Profile Photo
+- Database saving user information
+- Menu of matched friends and give ratings.
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Build the framework of the website, making the basic scaffolding of the website.
+- **CSS** - Format the website and make it look much nicer.
+- **React** - Implement user interactivity with the website.
+- **Service** - Pull from database to match users that share similar interests.
+- **DB/Login** - Login using email and password, store authentication credentials and user data.
+- **WebSocket** - Update matched friends and ratings.
 
 ## 🚀 AWS deliverable
 
