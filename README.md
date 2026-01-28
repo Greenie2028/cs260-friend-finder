@@ -48,21 +48,21 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
+- [x] **Server deployed and accessible with custom domain name** - https://friendfinder.click.
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I have 5 total htmls pages
+- [x] **Proper HTML element usage** - I followed proper guides on how to format html code correctly.
+- [x] **Links** - I have links
+- [x] **Text** - I have text placeholders for where I will have text on the full page, and some other text where appropriate.
+- [x] **3rd party API placeholder** - Place holder for the location services is there.
 - [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **Login placeholder** - I have a placeholder screen set up
+- [x] **DB data placeholder** - Placeholders are implemented for the saved data like hobbies.
+- [x] **WebSocket placeholder** - I have a button so you can chat with other friends that are online.
 
 ## 🚀 CSS deliverable
 
