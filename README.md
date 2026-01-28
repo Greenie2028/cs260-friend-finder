@@ -59,7 +59,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Links** - I have links
 - [x] **Text** - I have text placeholders for where I will have text on the full page, and some other text where appropriate.
 - [x] **3rd party API placeholder** - Place holder for the location services is there.
-- [ ] **Images** - I did not complete this part of the deliverable.
+- [x] **Images** - Placeholder image located on the home and account pages.
 - [x] **Login placeholder** - I have a placeholder screen set up
 - [x] **DB data placeholder** - Placeholders are implemented for the saved data like hobbies.
 - [x] **WebSocket placeholder** - I have a button so you can chat with other friends that are online.
