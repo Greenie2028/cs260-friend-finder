@@ -1,7 +1,10 @@
 * {
     color: black;
     background-color: #87A0C0;
+    font-family:cursive;
+    text-align: center;
 }
+
 html {
     height: 100%;
     margin: 0;
@@ -16,33 +19,30 @@ h1 {
     text-align: center;
 }
 
-.form {
-    margin-left: 3%;
+a {
+    color:black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 .create {
-    margin-left: 3%;
     margin-top: 15px;
 }
 
 input {
     background-color: #ddd;
+    text-align: left;
 }
 
 
 button {
     color: black;   
     margin: .25%;
+    text-align: center;
     background-color: white;
-}
-
-div.button {
-    margin-left: 3%;
-    gap: 10px;
-    display: grid;
-    grid-template-columns:64px 64px;
-    min-width: 32px;
-    
 }
 
 .invis {
@@ -57,7 +57,7 @@ hr {
     background-color: #eee;
     margin-left: auto;
     margin-right: auto;
-    width:98vw;
+    width:30vw;
 }
 
 footer {
@@ -65,6 +65,7 @@ footer {
     bottom: 0;
     width: 100%;
     height: 50px;
+    text-align: center;
 }
 
 .git {
