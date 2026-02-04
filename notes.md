@@ -24,7 +24,9 @@ I learned how to better use the form tags and how buttons work. I also learned t
 
 ## CSS
 
-This took a couple hours to get it how I wanted. It was important to make it responsive and Bootstrap helped with that. It looks great on all kinds of screen sizes.
+It took me quite a while to get the hang of how I wanted the website to look, but once I had gotten the index.html to a way I liked, I was for the most part able to just link the stylesheet to the other pages and have them mostly finished.
+
+Bootstrap made things so much easier, making things look very nice very quickly, giving the cozy vibe I was going for.
 
 Bootstrap seems a bit like magic. It styles things nicely, but is very opinionated. You either do, or you do not. There doesn't seem to be much in between.
 
