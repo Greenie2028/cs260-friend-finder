@@ -5,6 +5,8 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     margin-top: 1%;
     color: black;
     background-color: #87A0C0;
@@ -89,4 +91,17 @@ ul {
     align-items: center;
     list-style: none;
     padding: 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.form label {
+    font-weight: bold;
 }
