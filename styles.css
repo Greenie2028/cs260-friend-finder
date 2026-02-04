@@ -73,3 +73,14 @@ footer {
 #git {
     text-align:center;
 }
+
+.hobbies {
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+ul {
+    align-items: center;
+    list-style: none;
+    padding: 0;
+}
