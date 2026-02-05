@@ -54,6 +54,13 @@ button {
     background-color: white;
 }
 
+#profile_button {
+    position:inherit;
+    margin-left: auto;
+    margin-right: auto;
+    width: 7vw;
+}
+
 .invis {
     border: none;
     height: 0px;
