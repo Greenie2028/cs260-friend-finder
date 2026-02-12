@@ -36,7 +36,7 @@ export default function App() {
 
   <footer>
             <hr></hr>
-            <a href="https://github.com/Greenie2028/cs260-friend-finder">GitHub Repo</a>
+            <p>Levi Clements' <a href="https://github.com/Greenie2028/cs260-friend-finder">GitHub Repo</a></p>
         </footer>
   </div>
   </BrowserRouter>

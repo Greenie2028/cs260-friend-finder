@@ -34,7 +34,7 @@ I also used SVG to make the icon and logo for the app. This turned out to be a p
 
 ## React Part 1: Routing
 
-Setting up Vite and React was pretty simple. I had a bit of trouble because of conflicting CSS. This isn't as straight forward as you would find with Svelte or Vue, but I made it work in the end. If there was a ton of CSS it would be a real problem. It sure was nice to have the code structured in a more usable way.
+This was easily the most annoying and difficult assignment yet. The instructions were incredibly unclear on where different code was supposed to go and the example code would have small errors that were difficult to find to fix, such as having import /app.css instead of import ./app.css. Once I figured it out it was not too difficult to get the rest of it done.
 
 ## React Part 2: Reactivity
 
