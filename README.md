@@ -77,11 +77,10 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ## 🚀 React part 1: Routing deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - I used vite to help make all my pages into one page to make the site smoother
+- [x] **Components** - I made each html file instead into a .jsx file that can be used as components switched in and out from my main html page.
+- [x] **Router** - I implemented a router that directs between the different webpages of mine.
 
 ## 🚀 React part 2: Reactivity deliverable
 
