@@ -27,10 +27,6 @@ export function Create() {
             <input type="text" id="city" name="city"></input>
             </div>
             <div>
-            <label for="phone_num">Phone #: (Optional)</label>
-            <input type="tel" id="phone_num" name="phone"></input>
-            </div>
-            <div>
             <label for="photo_id">Profile Photo</label>
             <input type="file" id="photo_id" name="photo"></input>
             </div>

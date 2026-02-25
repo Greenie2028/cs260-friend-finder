@@ -17,9 +17,9 @@ export function Login() {
             <button type="submit" className="btn btn-primary">Sign in</button>
             </form>
         <hr className="invis"></hr>
-        <a className="btn btn-primary" href="create.html">Create an account</a>
+        <a className="btn btn-primary" href="/create">Create an account</a>
         <hr className="invis"></hr>
-        <img src="friends_clip.png" alt="Hand Drawn Friends" width="30%"></img>
+        <img src="../../public/friends_clip.png" alt="Hand Drawn Friends" width="30%"></img>
         <hr className="invis"></hr>
         <a href="http://www.freepik.com">Designed by Freepik</a>
         </main>
