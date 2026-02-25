@@ -38,7 +38,7 @@ This was easily the most annoying and difficult assignment yet. The instructions
 
 ## React Part 2: Reactivity
 
-I messed around a bit with the code for simon, changing the name and score of the placeholder for the websocket service.
+I messed around a bit with the code for simon, changing the name and score of the placeholder for the websocket service. I have also learned more about how && works as an implicit if statement.
 
 - Toast API https://react-hot-toast.com/
 - Stringify a custom object and use json.parse to save it
