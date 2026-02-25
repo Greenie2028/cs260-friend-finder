@@ -29,6 +29,21 @@ export function Account() {
     }
   }, [])
 
+    function handleSave() {
+      const currentUser = localStorage.getItem("currentUser");
+      const users = JSON.parse(localStorage.getItem("users")) || {};
+
+      users[currentUser] = { ...users[currentUser], name, city, hobbies };
+      localStorage.setItem('users', JSON.stringify(users));
+
+      setUserData(users[currentUser]);
+      setEditing(false);
+    }
+
+    function handleSignOut() {
+      localStorage.removeItem('currentUser');
+      navigate('/login');
+    }
 
   return (
     <main>
