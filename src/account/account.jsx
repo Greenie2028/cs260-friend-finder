@@ -3,6 +3,33 @@ import { useNavigate } from 'react-router-dom';
 import '../app.css';
 
 export function Account() {
+  const [userData, setUserData] = useState(null);
+  const [editing, setEditing] = useState(false);
+  const [name, setName] = useState('');
+  const [city, setCity] = useState('');
+  const [hobbies, setHobbies] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const currentUser = localStorage.getItem('currentUser');
+
+    if (!currentUser) {
+      navigate('/login');
+      return;
+    }
+
+    const users = JSON.parse(localStorage.getItem('users')) || {};
+    const user = users[currentUser];
+
+    if (user) {
+      setUserData(user);
+      setName(user.name || '');
+      setCity(user.city || '');
+      setHobbies(user.city || '');
+    }
+  }, [])
+
+
   return (
     <main>
       <h3>User Name</h3>
