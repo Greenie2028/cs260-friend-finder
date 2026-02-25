@@ -17,10 +17,10 @@ export default function App() {
         </header>
         <hr></hr>
         <nav>
-            <NavLink className="btn btn-secondary btn-sm" to="login">Sign in</NavLink> 
-            <NavLink className="btn btn-secondary btn-sm" to="home">Home</NavLink> 
-            <NavLink className="btn btn-secondary btn-sm" to="friends">Friends</NavLink> 
-            <NavLink className="btn btn-secondary btn-sm" to="account">Account</NavLink>
+            <NavLink className="btn btn-secondary btn mx-1" to="login">Sign in</NavLink> 
+            <NavLink className="btn btn-secondary btn mx-1" to="home">Home</NavLink> 
+            <NavLink className="btn btn-secondary btn mx-1" to="friends">Friends</NavLink> 
+            <NavLink className="btn btn-secondary btn mx-1" to="account">Account</NavLink>
         </nav>
         <hr></hr>
 
@@ -36,7 +36,7 @@ export default function App() {
 
   <footer>
             <hr></hr>
-            <p>Levi Clements' <a href="https://github.com/Greenie2028/cs260-friend-finder">GitHub Repo</a></p>
+            <div>Levi Clements' <a href="https://github.com/Greenie2028/cs260-friend-finder">GitHub Repo</a></div>
         </footer>
   </div>
   </BrowserRouter>
