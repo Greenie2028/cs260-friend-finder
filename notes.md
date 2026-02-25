@@ -38,9 +38,11 @@ This was easily the most annoying and difficult assignment yet. The instructions
 
 ## React Part 2: Reactivity
 
-This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.
+I messed around a bit with the code for simon, changing the name and score of the placeholder for the websocket service.
 
-Handling the toggling of the checkboxes was particularly interesting.
+- Toast API https://react-hot-toast.com/
+- Stringify a custom object and use json.parse to save it
+- Keep variables seperate
 
 ```jsx
 <div className="input-group sound-button-container">
