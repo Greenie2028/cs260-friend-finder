@@ -77,7 +77,7 @@ export function Account() {
           </ul>
           </div>
         <button className="btn btn-secondary btn-sm" onClick={() => setEditing(true)}>Edit Profile</button>
-        <br/><br/>
+        <br/>
         <button className="btn btn-danger btn-sm" onClick={handleSignOut}>Sign Out</button>
         </>
         )}
