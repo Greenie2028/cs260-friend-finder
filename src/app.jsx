@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
@@ -9,12 +9,22 @@ import { Create } from './create/create';
 import { Friends } from './friends/friends';
 
 export default function App() {
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const currentUser = localStorage.getItem('currentUser');
+        setIsLoggedIn(!!currentUser);   
+    }, []);
+
   return (
     <BrowserRouter>
     <div className="body">
     <header>
         <h1>Friend Finder</h1>
         </header>
+        {isLoggedIn && (
+        <>
         <hr></hr>
         <nav>
             <NavLink className="btn btn-secondary btn mx-1" to="login">Sign in</NavLink> 
@@ -22,13 +32,15 @@ export default function App() {
             <NavLink className="btn btn-secondary btn mx-1" to="friends">Friends</NavLink> 
             <NavLink className="btn btn-secondary btn mx-1" to="account">Account</NavLink>
         </nav>
+        </>
+        )}
         <hr></hr>
 
         <Routes>
-            <Route path='/' element={<Login />} exact />
-            <Route path='/login' element={<Login />} />
-            <Route path='/account' element={<Account />} />
-            <Route path='/create' element={<Create />} />
+            <Route path='/' element={<Login setIsLoggedIn={setIsLoggedIn} />} exact />
+            <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path='/account' element={<Account setIsLoggedIn={setIsLoggedIn}/>} />
+            <Route path='/create' element={<Create setIsLoggedIn={setIsLoggedIn}/>} />
             <Route path='/friends' element={<Friends />} />
             <Route path='/home' element={<Home />} />
             <Route path='*' element={<NotFound />} />

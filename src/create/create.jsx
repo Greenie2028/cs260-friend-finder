@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export function Create() {
+export function Create({ setIsLoggedIn }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPass, setConfirmPass] = useState('');
@@ -34,7 +34,7 @@ export function Create() {
         localStorage.setItem('users', JSON.stringify(users));
 
         localStorage.setItem('currentUser', email);
-
+        setIsLoggedIn(true);
         navigate('/home');
     }
 

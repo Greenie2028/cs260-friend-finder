@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../app.css';
 
-export function Account() {
+export function Account({ setIsLoggedIn} ) {
   const [userData, setUserData] = useState(null);
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState('');
@@ -25,7 +25,7 @@ export function Account() {
       setUserData(user);
       setName(user.name || '');
       setCity(user.city || '');
-      setHobbies(user.city || '');
+      setHobbies(user.hobbies || '');
     }
   }, [])
 
@@ -42,6 +42,7 @@ export function Account() {
 
     function handleSignOut() {
       localStorage.removeItem('currentUser');
+      setIsLoggedIn(false);
       navigate('/login');
     }
 

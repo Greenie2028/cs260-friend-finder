@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import '../app.css';
 
-export function Login() {
+export function Login({ setIsLoggedIn }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -15,6 +15,7 @@ export function Login() {
 
         if (users[email] && users[email].password === password) {
             localStorage.setItem('currentUser', email);
+            setIsLoggedIn(true);
             navigate('/home');
         }
         else {
