@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import '../app.css';
 
 export function Login() {
@@ -42,7 +42,7 @@ export function Login() {
             <button type="submit" className="btn btn-primary">Sign in</button>
         </form>
         <hr className="invis"></hr>
-        <a className="btn btn-primary" href="/create">Create an account</a>
+        <NavLink className="btn btn-primary" to="/create">Create an account</NavLink>
         <hr className="invis"></hr>
         <img src="/friends_clip.png" alt="Hand Drawn Friends" width="30%"></img>
         <hr className="invis"></hr>
