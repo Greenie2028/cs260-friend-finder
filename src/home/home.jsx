@@ -64,10 +64,8 @@ export function Home() {
         </ul>
         </div>
         <div>
-            <form>
-                <button className="btn btn-danger btn-sm mx-2" onClick={handleNotForMe}>Not for me</button>
-                <button className="btn btn-success btn-sm mx-2" onClick={handleAddFriend}>Add Friend!!</button>
-            </form>
+            <button className="btn btn-danger btn-sm mx-2" onClick={handleNotForMe}>Not for me</button>
+            <button className="btn btn-success btn-sm mx-2" onClick={handleAddFriend}>Add Friend!!</button>
         </div>
         </>
         ) : (
