@@ -66,7 +66,7 @@ export function Account({ setIsLoggedIn} ) {
       <>
       <h3>{userData.name}</h3>
         <div>
-            <img src="placeholder.png" height="300px" width="275px" alt="Profile Picture"></img>
+            <img src="hkplaceholder.jpg" height="300px" width="275px" alt="Profile Picture"></img>
         </div>
           <h6>{userData.city}</h6>
           <p>{localStorage.getItem('currentUser')}</p>

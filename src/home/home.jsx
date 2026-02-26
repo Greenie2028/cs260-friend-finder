@@ -52,7 +52,7 @@ export function Home() {
         <>
         <div className="user_info">
         <h3>{currentMatch[1].name}</h3>
-        <img src="placeholder.png" height="300px" width="275px" alt="Profile Picture"></img>
+        <img src="hornetplaceholder.jpeg" height="300px" width="275px" alt="Profile Picture"></img>
         <h6>{currentMatch[1].city}</h6>
         </div>
         <div className="hobbies">
