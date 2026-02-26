@@ -42,6 +42,8 @@ I messed around a bit with the code for simon, changing the name and score of th
 
 I've also learned a lot more about how to make a site more reactive and change the views depending on user actions, like signing in. I've also learned what different parts of React do, like useEffect running whenever the trigger condition happens.
 
+I was surprised that jsx also has a map function, but it does make my life much easier when handling users hobbies.
+
 - Toast API https://react-hot-toast.com/
 - Stringify a custom object and use json.parse to save it
 - Keep variables seperate
