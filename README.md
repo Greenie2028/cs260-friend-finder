@@ -84,10 +84,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ## 🚀 React part 2: Reactivity deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - I implemented the ability to store data in local storage and mocked out the ability to chat with other users. Also have mocked out images for the site
+- [x] **Hooks** - I used useState and useEffect hooks. useEffect for when I needed things to be triggered by other things, and I used useState to basically initialize and edit variables.
 
 ## 🚀 Service deliverable
 
