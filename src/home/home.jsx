@@ -58,7 +58,7 @@ export function Home() {
         <div class="hobbies">
         <p><b>Hobbies</b></p>
         <ul>
-            {currentMatch[1].hobbies ? currentMatch[1].hobbies.split('').map((hobby, index) => (
+            {currentMatch[1].hobbies ? currentMatch[1].hobbies.split(',').map((hobby, index) => (
                 <li key={index}>{hobby.trim()}</li>
             )) : <li>No hobbies listed</li>}
         </ul>
