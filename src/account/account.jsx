@@ -67,19 +67,18 @@ export function Account() {
         <div>
             <img src="placeholder.png" height="300px" width="275px" alt="Profile Picture"></img>
         </div>
-        <h8>User Hometown</h8>
-        <p>placeholder@place.com</p>
-        <p>123-456-7890</p>
-        <div className="hobbies"></div>
-        <p><strong>My Hobbies</strong></p>
-        <ul>
-            <li>Hobby</li>
-            <li>Hobby</li>
-            <li>Hobby</li>
-            <li>Hobby</li>
-            <li>Hobby</li>
-        </ul>
-        <button className="btn btn-secondary btn-large" type="button" id="profile_button">Edit Profile</button>
+          <h6>{userData.city}</h6>
+          <p>{localStorage.getItem('currentUser')}</p>
+          <div className="hobbies">
+          <p><strong>My Hobbies</strong></p>
+          <ul>
+             {userData.hobbies ? userData.hobbies.split(',').map((hobby, index) => 
+             (<li key={index}>{hobby.trim()}</li>)) : <li>No hobbies added yet</li>}
+          </ul>
+          </div>
+        <button className="btn btn-secondary btn-sm" onClick={() => setEditing(true)}>Edit Profile</button>
+        <br/><br/>
+        <button className="btn btn-danger btn-sm" onClick={handleSignOut}>Sign Out</button>
         </>
         )}
     </main> 
