@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../app.css';
 
 export function Friends() {
+    const [friends, setFriends] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const currentUser = localStorage.getItem('currentUser');
+
+        if (!currentUser) {
+            navigate('/login');
+            return;
+        }
+
+        const friendsList = JSON.parse(localStorage.getItem(`friends_${currentUser}`)) || [];
+        setFriends(friendsList);
+    }, []);
+
   return (
     <main>
     <h2>Your Friends</h2>
