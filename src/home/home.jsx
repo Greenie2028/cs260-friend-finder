@@ -38,15 +38,19 @@ export function Home() {
             setCurrentIndex((prev) => prev + 1);
         }
 
+        function handleNotForMe() {
+            setCurrentIndex((prev) => prev + 1);
+        }
+
+        const currentMatch = matches[currentIndex];
+
   return (
     <main>
+        <Toaster position="top-center"/>
         <div class="user_info">
-        <h3>Friend Name</h3>
+        <h3>{currentMatch[1].name}</h3>
         <img src="placeholder.png" height="300px" width="275px" alt="Profile Picture"></img>
-        {/* I will pull location data finding nearby towns, not just the exact same town */}
-        <p>Note: I will use location data from a third party 
-            such as google to find nearby towns to the user</p>
-        <h8>Friend City</h8>
+        <h6>{currentMatch[1].city}</h6>
         </div>
         <div class="hobbies">
         <p><b>Hobbies</b></p>
