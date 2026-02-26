@@ -24,6 +24,19 @@ export function Home() {
         });
         setMatches(cityMatches);}, []);
 
+        function handleAddFriend() {
+            const currentUser = localStorage.getItem('currentUser');
+            const [friendEmail, friendData] = matches[currentIndex];
+
+            const friends = JSON.parse(localStorage.getItem(`friends_${currentUser}`)) || [];
+
+            friends.push({ email: friendEmail, ...friendData});
+            localStorage.setItem(`friends_${currentUser}`, JSON.stringify(friends));
+
+            toast.success(`${friendData.name} added as a friend!`);
+
+            setCurrentIndex((prev) => prev + 1);
+        }
 
   return (
     <main>
