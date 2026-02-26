@@ -40,6 +40,8 @@ This was easily the most annoying and difficult assignment yet. The instructions
 
 I messed around a bit with the code for simon, changing the name and score of the placeholder for the websocket service. I have also learned more about how && works as an implicit if statement.
 
+I've also learned a lot more about how to make a site more reactive and change the views depending on user actions, like signing in. I've also learned what different parts of React do, like useEffect running whenever the trigger condition happens.
+
 - Toast API https://react-hot-toast.com/
 - Stringify a custom object and use json.parse to save it
 - Keep variables seperate
