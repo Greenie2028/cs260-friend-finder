@@ -47,6 +47,9 @@ export function Home() {
   return (
     <main>
         <Toaster position="top-center"/>
+
+        {currentMatch ? (
+        <>
         <div class="user_info">
         <h3>{currentMatch[1].name}</h3>
         <img src="placeholder.png" height="300px" width="275px" alt="Profile Picture"></img>
@@ -55,19 +58,24 @@ export function Home() {
         <div class="hobbies">
         <p><b>Hobbies</b></p>
         <ul>
-            <li>Hobby</li>
-            <li>Hobby</li>
-            <li>Hobby</li>
-            <li>Hobby</li>
-            <li>Hobby</li>
+            {currentMatch[1].hobbies ? currentMatch[1].hobbies.split('').map((hobby, index) => (
+                <li key={index}>{hobby.trim()}</li>
+            )) : <li>No hobbies listed</li>}
         </ul>
         </div>
         <div>
             <form>
-                <button class="btn btn-primary btn-sm" type="button">Not for me</button>
-                <button class="btn btn-primary btn-sm" type="button">Add Friend!!</button>
+                <button className="btn btn-danger btn-sm mx-2" onClick={handleNotForMe}>Not for me</button>
+                <button className="btn btn-success btn-sm mx-2" onClick={handleAddFriend}>Add Friend!!</button>
             </form>
         </div>
+        </>
+        ) : (
+            <div>
+                <h4>No more matches in your area!</h4>
+                <p>Check back later or update your city in your account settings.</p>
+            </div>
+        )}
         </main>
   );
 }
