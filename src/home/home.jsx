@@ -1,7 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import '../app.css';
 
 export function Home() {
+    const [matches, setMatches] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const navigate = useNavigate();
+
+    useEffect (() => {
+        const currentUser = localStorage.getItem('currentUser');
+
+        if(!currentUser) {
+            navigate('/login');
+            return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('users')) || {};
+        const myData = users[currentUser];
+
+        const cityMatches = Object.entries(users).filter(([email, data]) => {
+            return email !== currentUser && data.city === myData.city;
+        })
+    })
+
   return (
     <main>
         <div class="user_info">
