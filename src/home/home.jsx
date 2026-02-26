@@ -50,12 +50,12 @@ export function Home() {
 
         {currentMatch ? (
         <>
-        <div class="user_info">
+        <div className="user_info">
         <h3>{currentMatch[1].name}</h3>
         <img src="placeholder.png" height="300px" width="275px" alt="Profile Picture"></img>
         <h6>{currentMatch[1].city}</h6>
         </div>
-        <div class="hobbies">
+        <div className="hobbies">
         <p><b>Hobbies</b></p>
         <ul>
             {currentMatch[1].hobbies ? currentMatch[1].hobbies.split(',').map((hobby, index) => (
