@@ -21,8 +21,9 @@ export function Home() {
 
         const cityMatches = Object.entries(users).filter(([email, data]) => {
             return email !== currentUser && data.city === myData.city;
-        })
-    })
+        });
+        setMatches(cityMatches);}, []);
+
 
   return (
     <main>
