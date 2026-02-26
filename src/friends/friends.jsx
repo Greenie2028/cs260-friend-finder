@@ -13,7 +13,7 @@ export function Friends() {
     useEffect(() => {
         const currentUser = localStorage.getItem('currentUser');
 
-        if (!currentUser) {
+        if (!currentUser) { // If not logged in, send to log in.
             navigate('/login');
             return;
         }
@@ -27,8 +27,9 @@ export function Friends() {
 
         // Adding fake messages as placeholder
         setMessages([
-            { sender: friend.name, text: "Hello! It's great to meet you!"},
-            { sender: 'me', text: "Hi! It's great to talk to a placeholder!"}
+            { sender: friend.name, text: "Hello! It's great to meet you!"}, // Placeholder text from friend
+            // Syntax for sending a message from the user: 
+            // { sender: 'me', text: "Hi! It's great to talk to a placeholder!"}
         ]);
     }
 
@@ -140,7 +141,7 @@ export function Friends() {
                     backgroundColor: 'white',
                     gap: '8px'
                 }}>
-                    <input
+                    <input // Text input for chat
                     type='text'
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
