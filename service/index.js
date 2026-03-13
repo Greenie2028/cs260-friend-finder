@@ -65,3 +65,26 @@ apiRouter.get('/user/me', verifyAuth, (req, res) => { // Get current user
     const { password, token, ...safeUser } = req.user;
     res.send(safeUser);
 });
+
+apiRouter.put('/user/me', verifyAuth, (req, res) => { // Update profile
+    const { name, city, hobbies } = req.body;
+    if (name) req.user.name = name;
+    if (city) req.user.city = city;
+    if (hobbies !== undefined) req.user.hobbies = hobbies;
+    const { password, token, ...safeUser } = req.user;
+    res.send(safeUser);
+});
+
+apiRouter.get('/matches', verifyAuth, (req, res) => { // Getting matches within the same city
+    const currentUserEmail = req.user.email;
+    const currentUserCity = req.user.city;
+    const myFriends = friendsList[currentUserEmail] || [];
+    const friendEmails = myFriends.map(f => f.email);
+
+    const matches = users
+    .filter(u => u.email !== currentUserEmail && u.city === currentUserCity && !friendEmails.includes(u.email))
+    .map(({ password, token, ...safe }) => safe);
+
+    res.send(matches);
+});
+
