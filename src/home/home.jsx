@@ -16,13 +16,13 @@ export function Home() {
             return;
         }
 
-        const users = JSON.parse(localStorage.getItem('users')) || {};
-        const myData = users[currentUser];
-
-        const cityMatches = Object.entries(users).filter(([email, data]) => {
-            return email !== currentUser && data.city === myData.city;
-        });
-        setMatches(cityMatches);}, []);
+        fetch('/api/matches')
+        .then(res => {
+            if (!res.ok) { navigate('/login'); return null; }
+            return res.json();
+        })
+        .then(data => { if (data) setMatches(data); });
+    }, []);
 
         function handleAddFriend() {
             const currentUser = localStorage.getItem('currentUser');
