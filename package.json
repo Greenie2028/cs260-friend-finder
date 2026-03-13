@@ -1,12 +1,15 @@
 {
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "bootstrap": "^5.3.8",
+    "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
     "react": "^19.2.4",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.4",
     "react-hot-toast": "^2.6.0",
-    "react-router-dom": "^7.13.0"
+    "react-router-dom": "^7.13.0",
+    "uuid": "^13.0.0"
   },
   "name": "cs260-friend-finder",
   "version": "1.0.0",
