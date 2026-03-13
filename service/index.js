@@ -18,7 +18,7 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-apiRouter.post('/auth/create', async (req, res) => {
+apiRouter.post('/auth/create', async (req, res) => { // Create User
     if (await findUser('email', req.body.email)) {
         res.status(409).send({ mes: "Existing user" });
     } else {
@@ -27,3 +27,16 @@ apiRouter.post('/auth/create', async (req, res) => {
         res.send({ email: user.email});
     }
 });
+
+apiRouter.post('/auth/login', async (req, res) => { // Login Existing User
+    const user = await findUser('email', req.body.email);
+    if (user) {
+        if (await bcrypt.compare(req.body.password, user.password)) {
+            user.token = uuid.v4();
+            setAuthCookie(res, user.token);
+            res.send( {email: user.email });
+            return;
+        }
+    }
+    res.status(401).send({ msg: "Unauthorized "});
+})
