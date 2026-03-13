@@ -24,19 +24,16 @@ export function Home() {
         .then(data => { if (data) setMatches(data); });
     }, []);
 
-        function handleAddFriend() {
-            const currentUser = localStorage.getItem('currentUser');
-            const [friendEmail, friendData] = matches[currentIndex];
-
-            const friends = JSON.parse(localStorage.getItem(`friends_${currentUser}`)) || [];
-
-            friends.push({ email: friendEmail, ...friendData});
-            localStorage.setItem(`friends_${currentUser}`, JSON.stringify(friends));
-
-            toast.success(`${friendData.name} added as a friend!`);
-
-            setCurrentIndex((prev) => prev + 1);
-        }
+    async function handleAddFriend() {
+        const friendData = matches[currentIndex];
+        await fetch('/api/friends', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(friendData),
+        });
+        toast.success(`${friendData.name} added as a friend!`);
+        setCurrentIndex((prev) => prev + 1);
+    }
 
         function handleNotForMe() {
             setCurrentIndex((prev) => prev + 1);
