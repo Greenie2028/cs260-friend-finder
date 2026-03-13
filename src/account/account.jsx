@@ -29,6 +29,26 @@ export function Account({ setIsLoggedIn} ) {
     });
   }, []);
 
+  async function handleSave() {
+    const response = await fetch('/api/user/me', {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ name, city, hobbies }),
+    });
+    if(response.ok) {
+      const updated = await response.json();
+      setUserData(updated);
+      setEditing(false);
+    }
+  }
+
+  async function handleSignOut() {
+    await fetch('/api/auth/logout', {method: 'DELETE'});
+    localStorage.removeItem('currentUser');
+    setIsLoggedIn(false);
+    navigate('/login');
+  }
+  
     if (!userData) return null;
 
   return (
