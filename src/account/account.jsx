@@ -30,7 +30,7 @@ export function Account({ setIsLoggedIn} ) {
       }
     });
 
-    fetch('https://programming-quotesapi.vercel.app/api/random') // Third Party API Call
+    fetch('https://dummyjson/quotes/random') // Third Party API Call
     .then(res => res.json())
     .then(data => setQuote(data.quote));
   }, []);
