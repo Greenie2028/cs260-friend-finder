@@ -8,18 +8,21 @@ export function Login({ setIsLoggedIn }) {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    function handleSignIn(e) {
+    async function handleSignIn(e) {
         e.preventDefault();
+        const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {'content-type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
 
-        const users = JSON.parse(localStorage.getItem('users')) || {};
-
-        if (users[email] && users[email].password === password) {
+        if (response.ok) {
             localStorage.setItem('currentUser', email);
             setIsLoggedIn(true);
             navigate('/home');
         }
         else {
-            setError('Invalid email or password. Please try again or create an account.');
+            setError("Invalid email or password. Please try again or create an account.");
         }
     }
 
