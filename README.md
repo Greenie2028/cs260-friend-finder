@@ -89,14 +89,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ## 🚀 Service deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - Updated to use a back end with Node.js
+- [x] **Static middleware for frontend** - In index.js I use the app.use() function to serve my static frontend files
+- [x] **Calls to third party endpoints** - I made a call to dummyjson to get random inspirational quotes on the account page. I attempted to use programming quotes, but could not find a working API that allowed CORS and this assignment is due very shortly, so I am out of time.
+- [x] **Backend service endpoints** - Created endpoints for authentication, user profiles, and matches/removing friends.
+- [x] **Frontend calls service endpoints** - Updated all my files to call the backend instead of using localStorage for everything.
+- [x] **Supports registration, login, logout, and restricted endpoint** - You can create and save users with encrypted and checked passwords.
 
 ## 🚀 DB deliverable
 
