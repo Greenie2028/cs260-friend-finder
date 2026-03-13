@@ -10,32 +10,27 @@ export function Create({ setIsLoggedIn }) {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    function handleCreate(e) {
+    async function handleCreate(e) {
         e.preventDefault();
 
-        if (password !== confirmPass) {
-            setError('Passwords do not match.');
-            return;
+        if (password !== confirmPass) { setError('Passwords do not match'); return;}
+        if (!email || !password || !name || !city) { setError('Please fill out all fields'); return;}
+
+        const response = await fetch('/api/auth/create', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email, password, name, city }),
+        });
+
+        if (response.ok) {
+            localStorage.setItem('currentUser', email);
+            setIsLoggedIn(true);
+            navigate('/home');
         }
-
-        if (!email || !password || !name || !city) {
-            setError('Please fill out all fields');
-            return;
+        else {
+            const body = await response.json();
+            setError(body.msg || 'Error creating account.');
         }
-
-        const users = JSON.parse(localStorage.getItem('users')) || {};
-
-        if (users[email]) {
-            setError('An account with that email already exists.');
-            return;
-        }
-
-        users[email] = { password, name, city };
-        localStorage.setItem('users', JSON.stringify(users));
-
-        localStorage.setItem('currentUser', email);
-        setIsLoggedIn(true);
-        navigate('/home');
     }
 
 
