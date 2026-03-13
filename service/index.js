@@ -88,3 +88,19 @@ apiRouter.get('/matches', verifyAuth, (req, res) => { // Getting matches within 
     res.send(matches);
 });
 
+apiRouter.get('/friends', verifyAuth, (req, res) => { // Get friends
+    const friends = friendsList[req.user.email] || [];
+    res.send(friends);
+});
+
+apiRouter.post('/friends', verifyAuth, (req, res) => { // Add friends
+    const currentUserEmail = req.user.email;
+    if (!friendsList[currentUserEmail]) {
+        friendsList[currentUserEmail] = [];
+    }
+    const alreadyFriend = friendsList[currentUserEmail].find(f => f.email === req.body.email);
+    if (!alreadyFriend) { // Can't add friends that are already friends
+        friendsList[currentUserEmail].push(req.body);
+    }
+    res.send(friendsList[currentUserEmail]);
+});
