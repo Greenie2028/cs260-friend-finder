@@ -104,3 +104,11 @@ apiRouter.post('/friends', verifyAuth, (req, res) => { // Add friends
     }
     res.send(friendsList[currentUserEmail]);
 });
+
+apiRouter.delete('/friends/:email', verifyAuth, (req, res) => { // Removing friends
+    const currentUserEmail = req.user.email;
+    friendsList[currentUserEmail] = (friendsList[currentUserEmail] || []).filter(
+        f => f.email !== req.params.email
+    );
+    res.send(friendsList[currentUserEmail]);
+});
