@@ -12,39 +12,22 @@ export function Account({ setIsLoggedIn} ) {
 
   useEffect(() => {
     const currentUser = localStorage.getItem('currentUser');
+    if (!currentUser) { navigate('/login'); return; }
 
-    if (!currentUser) {
-      navigate('/login');
-      return;
-    }
-
-    const users = JSON.parse(localStorage.getItem('users')) || {};
-    const user = users[currentUser];
-
-    if (user) {
-      setUserData(user);
-      setName(user.name || '');
-      setCity(user.city || '');
-      setHobbies(user.hobbies || '');
-    }
-  }, [])
-
-    function handleSave() {
-      const currentUser = localStorage.getItem("currentUser");
-      const users = JSON.parse(localStorage.getItem("users")) || {};
-
-      users[currentUser] = { ...users[currentUser], name, city, hobbies };
-      localStorage.setItem('users', JSON.stringify(users));
-
-      setUserData(users[currentUser]);
-      setEditing(false);
-    }
-
-    function handleSignOut() {
-      localStorage.removeItem('currentUser');
-      setIsLoggedIn(false);
-      navigate('/login');
-    }
+    fetch('/api/user/me')
+    .then(res => {
+      if(!res.ok) { navigate('/login'); return null; }
+      return res.json();
+    })
+    .then(data => {
+      if (data) {
+        setUserData(data);
+        setName(data.name || '');
+        setCity(data.city || '');
+        setHobbies(data.hobbies || '');
+      }
+    });
+  }, []);
 
     if (!userData) return null;
 
