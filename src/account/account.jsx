@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../app.css';
 
+
 export function Account({ setIsLoggedIn} ) {
   const [userData, setUserData] = useState(null);
   const [editing, setEditing] = useState(false);
@@ -9,6 +10,7 @@ export function Account({ setIsLoggedIn} ) {
   const [city, setCity] = useState('');
   const [hobbies, setHobbies] = useState('');
   const navigate = useNavigate();
+  const [quote, setQuote] = useState('');
 
   useEffect(() => {
     const currentUser = localStorage.getItem('currentUser');
@@ -27,6 +29,10 @@ export function Account({ setIsLoggedIn} ) {
         setHobbies(data.hobbies || '');
       }
     });
+
+    fetch('https://programming-quotesapi.vercel.app/api/random') // Third Party API Call
+    .then(res => res.json())
+    .then(data => setQuote(data.quote));
   }, []);
 
   async function handleSave() {
@@ -83,6 +89,8 @@ export function Account({ setIsLoggedIn} ) {
         <button className="btn btn-secondary btn-sm" onClick={() => setEditing(true)}>Edit Profile</button>
         <br/>
         <button className="btn btn-danger btn-sm" onClick={handleSignOut}>Sign Out</button>
+        <br/>
+        {quote && <p><em>"{quote}</em></p>}
         </>
         )}
     </main> 
