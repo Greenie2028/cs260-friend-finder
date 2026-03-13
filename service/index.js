@@ -112,3 +112,11 @@ apiRouter.delete('/friends/:email', verifyAuth, (req, res) => { // Removing frie
     );
     res.send(friendsList[currentUserEmail]);
 });
+
+app.use(function (err, req, res, next) { // Basic Error Handler
+    res.status(500).send({ type: err.name, message: err.message});
+});
+
+app.use((_req, res) => {
+    res.sendFile('index.html', { root: 'public' });
+});
