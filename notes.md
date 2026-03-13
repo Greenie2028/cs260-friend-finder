@@ -47,3 +47,7 @@ I was surprised that jsx also has a map function, but it does make my life much 
 - Toast API https://react-hot-toast.com/
 - Stringify a custom object and use json.parse to save it
 - Keep variables seperate
+
+## Startup Service
+
+I learned a lot more about setting up a backend service for my webpage. I struggled with the simon set up a little, but eventually got it figured out.
