@@ -18,8 +18,11 @@ export function Friends() {
             return;
         }
 
-        const friendsList = JSON.parse(localStorage.getItem(`friends_${currentUser}`)) || [];
-        setFriends(friendsList);
+        fetch('/api/friends').then(res => {
+            if (!res.ok) { navigate('/login'); return null; }
+            return res.json();
+        })
+        .then(data => { if (data) setFriends(data); });
     }, []);
 
     function handleOpenChat(friend) {
@@ -54,13 +57,9 @@ export function Friends() {
         }, 1000);
     }
 
-    function handleRemoveFriend(emailToRemove) {
-        const currentUser = localStorage.getItem('currentUser');
-
-        const updatedFriends = friends.filter((friend) => friend.email !== emailToRemove);
-
-        localStorage.setItem(`friends_${currentUser}`, JSON.stringify(updatedFriends));
-        setFriends(updatedFriends);
+    async function handleRemoveFriend(emailToRemove) {
+        await fetch(`/api/friends/${emailToRemove}`, { method: 'DELETE'});
+        setFriends(prev => prev.filter(f => f.email !== emailToRemove));
     }
 
   return (
