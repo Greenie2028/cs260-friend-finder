@@ -48,14 +48,14 @@ export function Home() {
         {currentMatch ? (
         <>
         <div className="user_info">
-        <h3>{currentMatch[1].name}</h3>
+        <h3>{currentMatch.name}</h3>
         <img src="hornetplaceholder.jpeg" height="300px" width="275px" alt="Profile Picture"></img>
-        <h6>{currentMatch[1].city}</h6>
+        <h6>{currentMatch.city}</h6>
         </div>
         <div className="hobbies">
         <p><b>Hobbies</b></p>
         <ul>
-            {currentMatch[1].hobbies ? currentMatch[1].hobbies.split(',').map((hobby, index) => (
+            {currentMatch.hobbies ? currentMatch[1].hobbies.split(',').map((hobby, index) => (
                 <li key={index}>{hobby.trim()}</li>
             )) : <li>No hobbies listed</li>}
         </ul>
