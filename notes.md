@@ -53,3 +53,7 @@ I was surprised that jsx also has a map function, but it does make my life much 
 I learned a lot more about setting up a backend service for my webpage. I struggled with the simon set up a little, but eventually got it figured out.
 
 I got the assignment complete, adding in calls to the back end from the front end pages, password encryption (easier than I thought it would be), called a 3rd party API, and figured out hosting my own local back end.
+
+## Database
+
+Setting up a database is much easier than I was expecting. MongoDB does make it really easy to handle your data without needing to worry about universal formatting. Also, add stuff to your .gitignore so you don't post credientials publically.

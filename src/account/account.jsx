@@ -30,7 +30,7 @@ export function Account({ setIsLoggedIn} ) {
       }
     });
 
-    fetch('https://dummyjson/quotes/random') // Third Party API Call
+    fetch('https://dummyjson.com/quotes/random') // Third Party API Call
     .then(res => res.json())
     .then(data => setQuote(data.quote));
   }, []);
