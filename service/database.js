@@ -27,3 +27,27 @@ async function updateUser(email, updates) {
     await db.collection('users').updateOne({ email }, { $set: updates });
     return db.collection('users').findOne({ email });
 }
+
+async function getFriends(userEmail) {
+    const result = await db.collection('friends').findOne({ userEmail });
+    return result ? result.friends : [];
+}
+
+async function addFriend(userEmail, friendData) {
+    await db.collection('friends').updateOne(
+        { userEmail },
+        { $addToSet: { friends: friendData} },
+        { upsert: true }
+    );
+    return getFriends(userEmail);
+}
+
+async function removeFriend(userEmail, friendEmail) {
+    await db.collection('friends').updateOne(
+        { userEmail },
+        { $pull: { friends: { email: friendEmail } } }
+    );
+    return getFriends(userEmail);
+}
+
+module.exports = { getUser, createUser, updateUser, getFriends, addFriend, removeFriend };
