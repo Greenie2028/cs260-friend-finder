@@ -2,12 +2,10 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require ('express');
 const uuid = require('uuid');
+const { getUser, createUser, updateUser, getFriends, addFriend, removeFriend } = require('./database')
 const app = express();
 
 const authCookieName = 'token';
-
-let users = [];
-let friendsList = {};
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -19,12 +17,15 @@ var apiRouter = express.Router();
 app.use('/api', apiRouter);
 
 apiRouter.post('/auth/create', async (req, res) => { // Create User
-    if (await findUser('email', req.body.email)) {
+    if (await getUser('email', req.body.email)) {
         res.status(409).send({ mes: "Existing user" });
     } else {
-        const user = await createUser(req.body.email, req.body.password, req.body.name, req.body.city, req.body.hobbies);
-        setAuthCookie(res, user.token);
-        res.send({ email: user.email});
+        const passwordHash = await bcrypt.hash(req.body.password, 10);
+        const token = uuid.v4();
+        const user = await createUser(req.body.email, passwordHash, req.body.name, req.body.city, req.body.hobbies);
+        await updateUser(req.body.email, { token });
+        setAuthCookie(res, token);
+        res.send({ email: user.email });
     }
 });
 
@@ -120,18 +121,6 @@ app.use(function (err, req, res, next) { // Basic Error Handler
 app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
 });
-
-async function createUser(email, password, name, city, hobbies) {
-    const passwordHash = await bcrypt.hash(password, 10);
-    const user = { email, password: passwordHash, name, city, hobbies: hobbies || '', token: uuid.v4() };
-    users.push(user);
-    return user;
-}
-
-async function findUser(field, value) {
-    if (!value) return null;
-    return users.find((u) => u[field] === value);
-}
 
 function setAuthCookie(res, authToken) {
     res.cookie(authCookieName, authToken, {
