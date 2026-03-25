@@ -98,10 +98,10 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ## 🚀 DB deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+I added a database for persistent data storage. It was surprisingly easy and simple to do with MongoDB.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [x] **Stores data in MongoDB** - I now store my data in MongoDB instead of locally.
+- [x] **Stores credentials in MongoDB** - I encrypted my credentials with bcrypt before storing them in my data base.
 
 ## 🚀 WebSocket deliverable
 
