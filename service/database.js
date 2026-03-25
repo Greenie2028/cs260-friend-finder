@@ -16,3 +16,14 @@ connectToDatabase().catch(console.error);
 async function getUser(field, value) {
     return db.collection('users').findOne({ [field]:value });
 }
+
+async function createUser(email, passwordHash, name, city, hobbies) {
+    const user = { email, password: passwordHash, name, city, hobbies: hobbies || '', token: null};
+    await db.collection('users').insertOne(user);
+    return user;
+}
+
+async function updateUser(email, updates) {
+    await db.collection('users').updateOne({ email }, { $set: updates });
+    return db.collection('users').findOne({ email });
+}
