@@ -73,7 +73,7 @@ apiRouter.put('/user/me', verifyAuth, async (req, res) => { // Update profile
     const updates = {};
     if (name) updates.name = name;
     if (city) updates.city = city;
-    if (hobbies !== undefined) updateUser.hobbies = hobbies;
+    if (hobbies !== undefined) updates.hobbies = hobbies;
     const updated = await updateUser(req.user.email, updates);
     const { password, token, ...safeUser } = updated;
     res.send(safeUser);
