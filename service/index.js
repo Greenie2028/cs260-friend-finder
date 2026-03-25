@@ -30,10 +30,11 @@ apiRouter.post('/auth/create', async (req, res) => { // Create User
 });
 
 apiRouter.post('/auth/login', async (req, res) => { // Login Existing User
-    const user = await findUser('email', req.body.email);
+    const user = await getUser('email', req.body.email);
     if (user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
-            user.token = uuid.v4();
+            const token = uuid.v4();
+            await updateUser(req.body.email, { token });
             setAuthCookie(res, user.token);
             res.send( {email: user.email });
             return;
