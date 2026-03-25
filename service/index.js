@@ -35,7 +35,7 @@ apiRouter.post('/auth/login', async (req, res) => { // Login Existing User
         if (await bcrypt.compare(req.body.password, user.password)) {
             const token = uuid.v4();
             await updateUser(req.body.email, { token });
-            setAuthCookie(res, user.token);
+            setAuthCookie(res, token);
             res.send( {email: user.email });
             return;
         }
@@ -64,61 +64,54 @@ const verifyAuth = async (req, res, next) => {
 };
 
 apiRouter.get('/user/me', verifyAuth, async (req, res) => { // Get current user
-    const { name, city, hobbies } = req.body;
-    const updates = {};
-    if (name) updates.name = name;
-    if (city) updates.city  = city;
-    if (hobbies !== undefined) updateUser.hobbies = hobbies;
-    const updated = await updateUser(req.user.email, updates);
-    const { password, token, ...safeUser } = updated;d
-    res.send(safeUser);
-});
-
-apiRouter.put('/user/me', verifyAuth, (req, res) => { // Update profile
-    const { name, city, hobbies } = req.body;
-    if (name) req.user.name = name;
-    if (city) req.user.city = city;
-    if (hobbies !== undefined) req.user.hobbies = hobbies;
     const { password, token, ...safeUser } = req.user;
     res.send(safeUser);
 });
 
-apiRouter.get('/matches', verifyAuth, (req, res) => { // Getting matches within the same city
-    const currentUserEmail = req.user.email;
-    const currentUserCity = req.user.city;
-    const myFriends = friendsList[currentUserEmail] || [];
-    const friendEmails = myFriends.map(f => f.email);
-
-    const matches = users
-    .filter(u => u.email !== currentUserEmail && u.city === currentUserCity && !friendEmails.includes(u.email))
-    .map(({ password, token, ...safe }) => safe);
-
-    res.send(matches);
+apiRouter.put('/user/me', verifyAuth, async (req, res) => { // Update profile
+    const { name, city, hobbies } = req.body;
+    const updates = {};
+    if (name) updates.name = name;
+    if (city) updates.city = city;
+    if (hobbies !== undefined) updateUser.hobbies = hobbies;
+    const updated = await updateUser(req.user.email, updates);
+    const { password, token, ...safeUser } = updated;
+    res.send(safeUser);
 });
 
-apiRouter.get('/friends', verifyAuth, (req, res) => { // Get friends
-    const friends = friendsList[req.user.email] || [];
+apiRouter.get('/matches', verifyAuth, async (req, res) => { // Getting matches within the same city
+    const currentUserEmail = req.user.email;
+    const currentUserCity = req.user.city;
+    const myFriends = await getFriends(currentUserEmail);
+    const friendEmails = myFriends.map(f => f.email);
+
+    const config = require('./dbconfig.json');
+    const { MongoClient } = require('mongodb');
+    const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+    const client = new MongoClient(url);
+    await client.connect();
+    const allUsers = await client.db('friendfinder').collection('users')
+        .find({ city: currentUserCity, email: { $ne: currentUserEmail, $nin: friendEmails } })
+        .toArray();
+    await client.close();
+
+    const safeUsers = allUsers.map(({ password, token, ...safe }) => safe);
+    res.send(safeUsers);
+});
+
+apiRouter.get('/friends', verifyAuth, async (req, res) => { // Get friends
+    const friends = await getFriends(req.user.email);
     res.send(friends);
 });
 
-apiRouter.post('/friends', verifyAuth, (req, res) => { // Add friends
-    const currentUserEmail = req.user.email;
-    if (!friendsList[currentUserEmail]) {
-        friendsList[currentUserEmail] = [];
-    }
-    const alreadyFriend = friendsList[currentUserEmail].find(f => f.email === req.body.email);
-    if (!alreadyFriend) { // Can't add friends that are already friends
-        friendsList[currentUserEmail].push(req.body);
-    }
-    res.send(friendsList[currentUserEmail]);
+apiRouter.post('/friends', verifyAuth, async (req, res) => { // Add friends
+    const friends = await addFriend(req.user.email, req.body);
+    res.send(friends);
 });
 
-apiRouter.delete('/friends/:email', verifyAuth, (req, res) => { // Removing friends
-    const currentUserEmail = req.user.email;
-    friendsList[currentUserEmail] = (friendsList[currentUserEmail] || []).filter(
-        f => f.email !== req.params.email
-    );
-    res.send(friendsList[currentUserEmail]);
+apiRouter.delete('/friends/:email', verifyAuth, async (req, res) => { // Removing friends
+    const friends = await removeFriend(req.user.email, req.params.email);
+    res.send(friends);
 });
 
 app.use(function (err, req, res, next) { // Basic Error Handler
