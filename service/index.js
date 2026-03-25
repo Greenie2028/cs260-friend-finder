@@ -53,7 +53,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {  // sign out
 });
 
 const verifyAuth = async (req, res, next) => {
-    const user = await findUser('token', req.cookies[authCookieName]);
+    const user = await getUser('token', req.cookies[authCookieName]);
     if (user) {
         req.user = user;
         next();
@@ -63,8 +63,14 @@ const verifyAuth = async (req, res, next) => {
     }
 };
 
-apiRouter.get('/user/me', verifyAuth, (req, res) => { // Get current user
-    const { password, token, ...safeUser } = req.user;
+apiRouter.get('/user/me', verifyAuth, async (req, res) => { // Get current user
+    const { name, city, hobbies } = req.body;
+    const updates = {};
+    if (name) updates.name = name;
+    if (city) updates.city  = city;
+    if (hobbies !== undefined) updateUser.hobbies = hobbies;
+    const updated = await updateUser(req.user.email, updates);
+    const { password, token, ...safeUser } = updated;d
     res.send(safeUser);
 });
 
