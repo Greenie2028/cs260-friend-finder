@@ -4,6 +4,7 @@ const express = require ('express');
 const uuid = require('uuid');
 const { getUser, createUser, updateUser, getFriends, addFriend, removeFriend } = require('./database')
 const app = express();
+const { WebSocketServer } = require('ws');
 
 const authCookieName = 'token';
 
@@ -131,6 +132,49 @@ function setAuthCookie(res, authToken) {
     });
 }
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
-})
+});
+
+const { WebSocketServer } = require('ws');
+const wss = new WebSocketServer({ server });
+const connections = new Map();
+
+wss.on('connection', (ws) => {
+    let userEmail = null;
+
+    ws.on('message', (data) => {
+        const msg = JSON.parse(data);
+
+        if (msg.type === 'register') {
+            userEmail = msg.email;
+            connections.set(userEmail, ws);
+        }
+
+        if (msg.type === 'chat') {
+            const recipientWs = connections.get(msg.to);
+            if (recipientWs && recipientWs.readyState === ws.OPEN) {
+                recipientWs.send(JSON.stringify({
+                    type: 'chat',
+                    from: msg.from,
+                    fromName: msg.fromName,
+                    text: msg.text,
+                }));
+            }
+        }
+
+        if (msg.type === 'friendAdded') {
+            const recipientWs = connections.get(msg.to);
+            if (recipientWs && recipientWs.readyState === ws.OPEN) {
+                recipientWs.send(JSON.stringify({
+                    type: 'friendAdded',
+                    fromName: msg.fromName,
+                }));
+            }
+        }
+    });
+
+    ws.on('close', () => {
+        if (userEmail) connections.delete(userEmail);
+    });
+});
