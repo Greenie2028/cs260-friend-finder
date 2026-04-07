@@ -57,3 +57,7 @@ I got the assignment complete, adding in calls to the back end from the front en
 ## Database
 
 Setting up a database is much easier than I was expecting. MongoDB does make it really easy to handle your data without needing to worry about universal formatting. Also, add stuff to your .gitignore so you don't post credientials publically.
+
+## Websocket
+
+I found it really cool being able to set up the ability for users to impact the experience of others. This also made me more aware of how computer programs can have vulnerabilities. Before I didn't understand how you could get a program to do something it wasn't built to do but once you allow for users to begin interacting with a server and so many moving parts, I can see how things may bug out.
