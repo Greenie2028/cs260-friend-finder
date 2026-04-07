@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import '../app.css';
 
 export function Friends() {
@@ -8,7 +9,8 @@ export function Friends() {
     const [messages, setMessages] = useState([]);
     const [inputMessage, setInputMessage] = useState('');
     const navigate = useNavigate();
-    const messagesEndRef = useRef(null)
+    const messagesEndRef = useRef(null);
+    const wsRef = useRef(null);
 
     useEffect(() => {
         const currentUser = localStorage.getItem('currentUser');
@@ -23,17 +25,39 @@ export function Friends() {
             return res.json();
         })
         .then(data => { if (data) setFriends(data); });
+
+        const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+        const ws = new WebSocket(`${protocol}://${window.location.host}`);
+        wsRef.current = ws;
+
+        ws.onopen = () => {
+            ws.send(JSON.stringify({ type: 'register', email: currentUser}));
+        };
+
+        ws.onmessage = (event) => {
+            const msg = JSON.parse(event.data);
+
+            if (msg.type  === 'chat') {
+                setMessages((prev) => [...prev, { sender: msg.fromName, text: msg.text}]);
+            }
+
+            if (msg.type === 'friendAdded') {
+                toast.success(`${msg.fromName} added you as a friend!`);
+            }
+        };
+
+        ws.onclose = () => {
+            console.log("WebSocket disconnected");
+        };
+
+        return () => {
+            ws.close();
+        };
     }, []);
 
     function handleOpenChat(friend) {
         setActiveChatFriend(friend);
-
-        // Adding fake messages as placeholder
-        setMessages([
-            { sender: friend.name, text: "Hello! It's great to meet you!"}, // Placeholder text from friend
-            // Syntax for sending a message from the user: 
-            // { sender: 'me', text: "Hi! It's great to talk to a placeholder!"}
-        ]);
+        setMessages([]);
     }
 
     function handleCloseChat() {
@@ -45,16 +69,20 @@ export function Friends() {
     function handleSendMessage() {
         if (!inputMessage.trim()) return;
 
-        setMessages((prev) => [...prev, {sender: 'me', text: inputMessage }]);
-        setInputMessage('');
+        const currentUser = localStorage.getItem('currentUser');
+        const currentUserName = localStorage.getItem('currentUserName') || currentUser;
 
-        //Simulating a response
-        setTimeout(() => {
-            setMessages((prev) => [
-                ...prev,
-                { sender: activeChatFriend.name, text: "Sounds Great! (Disclaimer: This is a simulated response and does not accurately represent the beliefs or wishs of Levi Clements and is not legally binding in any way."}
-            ]);
-        }, 1000);
+        setMessages((prev) => [...prev, { sender: 'me', text: inputMessage }]);
+
+        wsRef.current.send(JSON.stringify({
+            type: 'chat',
+            from: currentUser,
+            fromName: currentUserName,
+            to: activeChatFriend.email,
+            text: inputMessage,
+        }));
+
+        setInputMessage('');
     }
 
     async function handleRemoveFriend(emailToRemove) {
@@ -64,6 +92,7 @@ export function Friends() {
 
   return (
     <main>
+    <Toaster position='top-center' />
     <h2>Your Friends</h2>
         {friends.length > 0 ? (
             <ul>
