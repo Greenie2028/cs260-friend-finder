@@ -105,7 +105,7 @@ I added a database for persistent data storage. It was surprisingly easy and sim
 
 ## 🚀 WebSocket deliverable
 
-I implemented WebSocket allowing for users to interact with each other.
+I implemented WebSocket allowing for users to interact with each other. Currently the chat messages disappear upon closing the chat. I have not decided if I want disappearing messages or to make them persistent, so I am going to leave them disappearing as a security/privacy measure for now.
 
 - [x] **Backend listens for WebSocket connection** - Added WebSocket server to index.js.
 - [x] **Frontend makes WebSocket connection** - Both my home and friends page connect to my new WebSocket connection.
