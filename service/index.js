@@ -126,9 +126,9 @@ app.use((_req, res) => {
 function setAuthCookie(res, authToken) {
     res.cookie(authCookieName, authToken, {
         maxAge: 1000 * 60 * 60 * 24 * 365,
-        secure: true,
-        httpOnly: true,
-        sameSite: 'strict',
+        //secure: true,
+        // httpOnly: true,
+        // sameSite: 'strict',
     });
 }
 
@@ -136,7 +136,6 @@ const server = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
-const { WebSocketServer } = require('ws');
 const wss = new WebSocketServer({ server });
 const connections = new Map();
 
