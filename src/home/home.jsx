@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
+import { useRef } from 'react';
 import '../app.css';
 
 export function Home() {
     const [matches, setMatches] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const navigate = useNavigate();
+    const wsRef = useRef(null);
 
     useEffect (() => {
         const currentUser = localStorage.getItem('currentUser');
@@ -22,15 +24,43 @@ export function Home() {
             return res.json();
         })
         .then(data => { if (data) setMatches(data); });
+
+        const protocol = window.location.protocol ===  'https:' ? 'wss' : 'ws';
+        const ws = new WebSocket(`${protocol}://${window.location.host}`);
+        wsRef.current = ws;
+    
+        ws.onopen = () => {
+            const currentUser = localStorage.getItem('currentUser');
+            ws.send(JSON.stringify({ type: 'register', email: currentUser }));
+        };
+    
+        return () => {
+            ws.close();
+        };
     }, []);
+
 
     async function handleAddFriend() {
         const friendData = matches[currentIndex];
+        const currentUser = localStorage.getItem('currentUser');
+
         await fetch('/api/friends', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(friendData),
         });
+
+        const meRes = await fetch('/api/user/me');
+        const me = await meRes.json();
+
+        if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+            wsRef.current.send(JSON.stringify({
+                type: 'friendAdded',
+                to: friendData.email,
+                fromName: me.name,
+            }));
+        }
+
         toast.success(`${friendData.name} added as a friend!`);
         setCurrentIndex((prev) => prev + 1);
     }
