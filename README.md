@@ -105,10 +105,10 @@ I added a database for persistent data storage. It was surprisingly easy and sim
 
 ## 🚀 WebSocket deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+I implemented WebSocket allowing for users to interact with each other.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - Added WebSocket server to index.js.
+- [x] **Frontend makes WebSocket connection** - Both my home and friends page connect to my new WebSocket connection.
+- [x] **Data sent over WebSocket connection** - I send message and notification data via WebSocket.
+- [x] **WebSocket data displayed** - They are displayed in the form of a chat log.
+- [x] **Application is fully functional** - I have everything I wanted to implement completed and working.
